@@ -1,7 +1,7 @@
 import { WalletTypes, toNano } from "locklift";
 
 export default async () => {
-  await locklift.deployments.deployAccounts(
+  const accounts = await locklift.deployments.deployAccounts(
     [
       {
         deploymentName: "Owner",
@@ -14,6 +14,15 @@ export default async () => {
     ],
     true,
   );
+
+
+  await locklift.provider.sendMessage({
+    sender: accounts[0].account.address,
+    recipient: accounts[0].account.address,
+    amount: toNano(0.5),
+    bounce: false,
+  });
+
 
 
 };
