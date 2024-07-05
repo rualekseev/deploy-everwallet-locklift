@@ -34,6 +34,9 @@ const config: LockliftConfig = {
     // externalContracts: {
     //   "node_modules/broxus-ton-tokens-contracts/build": ['TokenRoot', 'TokenWallet']
     // }
+    externalContractsArtifacts: {
+      "externalContracts": ['SafeMultisigWallet']
+   }
   },
   linker: {
     // Specify path to your stdlib
@@ -68,29 +71,22 @@ const config: LockliftConfig = {
         amount: 3000,
       },
     },
-    broxus_jrpc: {
-      // Specify connection settings for https://github.com/broxus/everscale-standalone-client/
+    locklift: {
       connection: {
-        id: 1,
-        type: 'jrpc',
-        group: 'dev',
-        data: {
-          endpoint: process.env.BROXUS_TESTNET_RPC_NETWORK_ENDPOINT ?? '',
-        },
-      },
-
-      // This giver is default Wallet
-      giver: {
-        address: process.env.BROXUS_TESTNET_GIVER_ADDRESS ?? '',
-        key: process.env.BROXUS_TESTNET_GIVER_KEY ?? ''
+        id: 1001,
+        // @ts-ignore
+        type: "proxy",
+        // @ts-ignore
+        data: {},
       },
       keys: {
         // Use everdev to generate your phrase
         // !!! Never commit it in your repos !!!
-        phrase: process.env.BROXUS_PHRASE ?? '',
-        amount: 3000,
+        // phrase: "action inject penalty envelope rabbit element slim tornado dinner pizza off blood",
+        amount: 20,
       },
     },
+
   },
   mocha: {
     timeout: 2000000,
